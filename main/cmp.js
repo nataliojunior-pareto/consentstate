@@ -72,7 +72,7 @@ function defaultConsent() {
 }
 
 function createBanner() {
-      // 1. Cria a estrutura do banner
+  // 1. Cria a estrutura do banner
   const banner = document.createElement('div');
   banner.id = 'consent-banner';
   banner.innerHTML = `
@@ -91,45 +91,55 @@ function createBanner() {
       </div>
     </div>
   `;
-      // 3. Adiciona o banner ao body
-      document.body.appendChild(banner);
-      
-      const rejectAllButton = document.getElementById('reject-all');
-      const acceptAllButton = document.getElementById('accept-all');
-      const manageButton = document.getElementById('manage');
-      const manageOptions = banner.querySelector('.manage-options');
-      const cancelManageButton = document.getElementById('cancel-manage');
-      const saveManageButton = document.getElementById('save-manage');
 
-      rejectAllButton.addEventListener('click', () => {
-        console.log("Rejeitar todos os cookies");
-        banner.remove();
-      });
+  // 2. Adiciona o banner ao body
+  document.body.appendChild(banner);
 
-      acceptAllButton.addEventListener('click', () => {
-        console.log("Aceitar todos os cookies");
-        banner.remove();
-      });
+  // 3. Adiciona os event listeners para os botões
+  const rejectAllButton = document.getElementById('reject-all');
+  const acceptAllButton = document.getElementById('accept-all');
+  const manageButton = document.getElementById('manage');
+  const manageOptions = banner.querySelector('.manage-options');
+  const cancelManageButton = document.getElementById('cancel-manage');
+  const saveManageButton = document.getElementById('save-manage');
 
-      manageButton.addEventListener('click', () => {
-        manageOptions.style.display = 'block';
-      });
 
-      cancelManageButton.addEventListener('click', () => {
-        manageOptions.style.display = 'none';
-      });
+  rejectAllButton.addEventListener('click', () => {
+    // Lógica para rejeitar todos os cookies
+    console.log("Rejeitar todos os cookies");
+    // Aqui você adicionaria a lógica para remover os cookies
+    banner.remove(); // remove o banner após a ação.
+  });
 
-      saveManageButton.addEventListener('click', () => {
-        console.log("Salvar preferências");
-        manageOptions.style.display = 'none';
-        banner.remove();
-      });
-    })
-    .catch(error => {
-      console.error("Erro ao carregar o banner:", error);
-      // Lógica para lidar com o erro, por exemplo, exibir uma mensagem de erro
-    });
+  acceptAllButton.addEventListener('click', () => {
+    // Lógica para aceitar todos os cookies
+    console.log("Aceitar todos os cookies");
+    // Aqui você adicionaria a lógica para definir os cookies
+    banner.remove(); // remove o banner após a ação.
+  });
+
+  manageButton.addEventListener('click', () => {
+    manageOptions.style.display = 'block'; // Mostra as opções de gerenciamento
+  });
+
+  cancelManageButton.addEventListener('click', () => {
+    manageOptions.style.display = 'none'; // Esconde as opções de gerenciamento
+  });
+
+  saveManageButton.addEventListener('click', () => {
+    // Lógica para salvar as preferências de cookies
+    console.log("Salvar preferências");
+    // Aqui você adicionaria a lógica para salvar as preferências e definir os cookies
+    manageOptions.style.display = 'none'; // Esconde as opções de gerenciamento
+    banner.remove(); // remove o banner após a ação.
+  });
+
+
+  return banner;
 }
+
+// Chama a função para criar o banner.
+createBanner();
 
 function hideBanner() {
     return null
