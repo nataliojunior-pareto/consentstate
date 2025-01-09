@@ -1,0 +1,120 @@
+<style>
+/* 
+  BANNER DE COOKIES - CONFIGURAÇÕES PRINCIPAIS
+  Para alterar as cores principais do banner, modifique as variáveis abaixo
+  Exemplo:
+  --banner-bg-color: #f0f0f0;
+  --banner-text-color: #333333;
+  --button-primary-color: #007bff;
+*/
+:root {
+  --banner-bg-color: #ffffff;        /* Cor de fundo do banner */
+  --banner-text-color: #000000;      /* Cor do texto */
+  --button-primary-color: #0066cc;   /* Cor principal dos botões */
+  --button-text-color: #ffffff;      /* Cor do texto dos botões */
+}
+
+/* 
+  POSICIONAMENTO DO BANNER
+  Para alterar a posição, modifique a propriedade 'position' e as coordenadas
+  Exemplo para banner no topo:
+  bottom: auto;
+  top: 0;
+*/
+.cookie-banner {
+  position: fixed;           /* Fixo na tela */
+  bottom: 0;                /* Posição vertical (0 = baixo) */
+  left: 0;                  /* Posição horizontal (0 = esquerda) */
+  width: 100%;              
+  padding: 20px;
+  background-color: var(--banner-bg-color);
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+  z-index: 9999;
+}
+
+/* 
+  CONFIGURAÇÕES DE FONTE
+  Para alterar a fonte, modifique font-family
+  Para alterar o tamanho, modifique font-size
+  Exemplo:
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+*/
+.cookie-banner p {
+  font-family: 'Helvetica', sans-serif;  /* Tipo de fonte */
+  font-size: 14px;                       /* Tamanho da fonte */
+  color: var(--banner-text-color);
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+/* Estilo dos links */
+.cookie-banner a {
+  color: var(--button-primary-color);
+  text-decoration: underline;
+}
+
+/* Estilo dos botões */
+.consent-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.cookie-banner button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  background-color: var(--button-primary-color);
+  color: var(--button-text-color);
+  transition: opacity 0.3s;
+}
+
+.cookie-banner button:hover {
+  opacity: 0.9;
+}
+
+/* Estilos para a seção de gerenciamento */
+.manage-options {
+  margin-top: 20px;
+  padding: 20px;
+  border-top: 1px solid #eee;
+}
+
+.manage-options h2 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: var(--banner-text-color);
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+  .consent-buttons {
+    flex-direction: column;
+  }
+  
+  .cookie-banner button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+} 
+</style>
+
+<div class="cookie-banner">
+    <p>Usamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="/politica-de-privacidade">política de privacidade</a>.</p>
+    <div class="consent-buttons">
+        <button id="reject-all">Rejeitar tudo</button>
+        <button id="accept-all">Aceitar todos os cookies</button>
+        <button id="manage">Gerenciar</button>
+    </div>
+    <div class="manage-options" style="display:none;">
+        <h2>Preferências de coleta de dados do site</h2>
+        <div class="consent-options-container"></div>
+        <div class="consent-buttons">
+            <button id="cancel-manage">Cancelar</button>
+            <button id="save-manage">Salvar</button>
+        </div>
+    </div>
+</div>
