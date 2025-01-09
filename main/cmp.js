@@ -138,5 +138,7 @@ function autoBlocking() {
 }
 
 function start() {
+  defaultConsent();
+  createBanner();
   window.addEventListener('DOMContentLoaded', checkConsent);
 }
