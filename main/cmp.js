@@ -72,18 +72,28 @@ function defaultConsent() {
 }
 
 function createBanner() {
-  // 1. Busca o HTML do banner de um arquivo externo
-  fetch('../mellifluous/banner.html') // Substitua 'banner.html' pelo nome do seu arquivo
-    .then(response => response.text())
-    .then(html => {
-      // 2. Cria um elemento div e define o HTML do banner
-      const banner = document.createElement('div');
-      banner.innerHTML = html;
-
+      // 1. Cria a estrutura do banner
+  const banner = document.createElement('div');
+  banner.id = 'consent-banner';
+  banner.innerHTML = `
+    <p>Usamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="/politica-de-privacidade">política de privacidade</a>.</p>
+    <div class="consent-buttons">
+      <button id="reject-all">Rejeitar tudo</button>
+      <button id="accept-all">Aceitar todos os cookies</button>
+      <button id="manage">Gerenciar</button>
+    </div>
+    <div class="manage-options" style="display:none;">
+      <h2>Preferências de coleta de dados do site</h2>
+      <div class="consent-options-container"></div>
+      <div class="consent-buttons">
+        <button id="cancel-manage">Cancelar</button>
+        <button id="save-manage">Salvar</button>
+      </div>
+    </div>
+  `;
       // 3. Adiciona o banner ao body
       document.body.appendChild(banner);
-
-      // 4. Event Listeners (mesmo código do exemplo anterior)
+      
       const rejectAllButton = document.getElementById('reject-all');
       const acceptAllButton = document.getElementById('accept-all');
       const manageButton = document.getElementById('manage');
