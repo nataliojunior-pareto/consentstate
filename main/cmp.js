@@ -1,3 +1,22 @@
+const consentBanner = document.getElementById('consent-banner');
+const acceptAllButton = document.getElementById('accept-all');
+const rejectAllButton = document.getElementById('reject-all');
+const manageButton = document.getElementById('manage');
+const manageOptions = document.querySelector('.manage-options');
+const saveManageButton = document.getElementById('save-manage');
+const cancelManageButton = document.getElementById('cancel-manage');
+const consentOptionsContainer = document.querySelector('.consent-options-container');
+
+const consentOptions = [
+  'ad_storage',
+  'analytics_storage',
+  'ad_user_data',
+  'ad_personalization',
+  'personalization_storage',
+  'functionality_storage',
+  'security_storage',
+];
+
 function getCookie(name) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
