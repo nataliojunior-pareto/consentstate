@@ -72,18 +72,28 @@ function defaultConsent() {
 }
 
 function createBanner(urlBanner) {
-    // Fetch do arquivo HTML via jsDelivr
+    // Criar uma variável para o container no escopo da função
+    let bannerContainer = document.createElement('div');
+
     return fetch(urlBanner)
         .then(response => response.text())
         .then(html => {
-            // Criar um elemento temporário para converter a string HTML em elemento DOM
-            const temp = document.createElement('div');
-            temp.innerHTML = html;
-            
-            // Inserir o banner no documento
-            document.body.appendChild(temp.firstElementChild);
+            // Inserir o HTML no container
+            bannerContainer.innerHTML = html;
+
+            // Extrair os elementos
+            const styleElement = bannerContainer.querySelector('style');
+            const bannerElement = bannerContainer.querySelector('.cookie-banner');
+
+            // Adicionar o CSS se existir
+            if (styleElement) {
+                document.head.appendChild(styleElement.cloneNode(true));
+            }
+            document.body.appendChild(bannerElement);
         })
-        .catch(error => console.error('Erro ao carregar o banner:', error));
+        .catch(error => {
+            console.error('Erro ao criar banner:', error);
+        });
 }
 
 function hideBanner() {
