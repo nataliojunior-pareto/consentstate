@@ -1,5 +1,5 @@
 const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/mellifluous/banner-template.html';
-import('//cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/cmp4.js')
+import('https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/cmp4.js')
     .then(module => {
         // Use as funções do módulo aqui
         console.log('Módulo carregado com sucesso');
