@@ -1,3 +1,5 @@
+import { bannerHTML } from '../mellifluous/banner-template.js';
+
 const consentBanner = document.getElementById('consent-banner');
 const acceptAllButton = document.getElementById('accept-all');
 const rejectAllButton = document.getElementById('reject-all');
