@@ -73,57 +73,149 @@ function defaultConsent() {
     });
 }
 
-function createBanner() {
-  const banner = document.createElement('div');
-  banner.id = 'consent-banner';
-  banner.innerHTML = bannerHTML;
-  document.body.appendChild(banner);
+function createBanner(theme = 'branco', font = 'DM Sans Normal', position = 'central') {
+    // Criar o elemento principal do banner
+    const banner = document.createElement('div');
+    banner.id = 'cookie-banner';
 
-  // 3. Adiciona os event listeners para os botões
-  const rejectAllButton = document.getElementById('reject-all');
-  const acceptAllButton = document.getElementById('accept-all');
-  const manageButton = document.getElementById('manage');
-  const manageOptions = banner.querySelector('.manage-options');
-  const cancelManageButton = document.getElementById('cancel-manage');
-  const saveManageButton = document.getElementById('save-manage');
+    // Definir o conteúdo HTML
+    banner.innerHTML = `
+        <p>Usamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="/politica-de-privacidade">política de privacidade</a>.</p>
+        <div class="consent-buttons">
+            <button id="reject-all">Rejeitar tudo</button>
+            <button id="accept-all">Aceitar todos os cookies</button>
+            <button id="manage">Gerenciar</button>
+        </div>
+        <div class="manage-options" style="display:none;">
+            <h2>Preferências de coleta de dados do site</h2>
+            <div class="consent-options-container"></div>
+            <div class="consent-buttons">
+                <button id="cancel-manage">Cancelar</button>
+                <button id="save-manage">Salvar</button>
+            </div>
+        </div>
+    `;
 
+    // Aplicar estilos base
+    banner.style.padding = '20px';
+    banner.style.maxWidth = '400px';
+    banner.style.borderRadius = '8px';
+    banner.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+    banner.style.fontFamily = font === 'DM Sans Normal' ? 'DM Sans, sans-serif' : 'Ubuntu, sans-serif';
 
-  rejectAllButton.addEventListener('click', () => {
-    // Lógica para rejeitar todos os cookies
-    console.log("Rejeitar todos os cookies");
-    // Aqui você adicionaria a lógica para remover os cookies
-    banner.remove(); // remove o banner após a ação.
-  });
+    // Aplicar tema
+    if (theme === 'branco') {
+        banner.style.backgroundColor = '#ffffff';
+        banner.style.color = '#000000';
+    } else {
+        banner.style.backgroundColor = '#333333';
+        banner.style.color = '#ffffff';
+    }
 
-  acceptAllButton.addEventListener('click', () => {
-    // Lógica para aceitar todos os cookies
-    console.log("Aceitar todos os cookies");
-    // Aqui você adicionaria a lógica para definir os cookies
-    banner.remove(); // remove o banner após a ação.
-  });
+    // Aplicar posição
+    banner.style.position = 'fixed';
+    banner.style.margin = '20px';
 
-  manageButton.addEventListener('click', () => {
-    manageOptions.style.display = 'block'; // Mostra as opções de gerenciamento
-  });
+    switch (position) {
+        case 'canto superior esquerdo':
+            banner.style.top = '0';
+            banner.style.left = '0';
+            break;
+        case 'canto superior direito':
+            banner.style.top = '0';
+            banner.style.right = '0';
+            break;
+        case 'canto inferior esquerdo':
+            banner.style.bottom = '0';
+            banner.style.left = '0';
+            break;
+        case 'canto inferior direito':
+            banner.style.bottom = '0';
+            banner.style.right = '0';
+            break;
+        case 'preso no topo':
+            banner.style.top = '0';
+            banner.style.left = '0';
+            banner.style.right = '0';
+            banner.style.margin = '0';
+            banner.style.maxWidth = '100%';
+            break;
+        case 'flutuando no topo':
+            banner.style.top = '20px';
+            banner.style.left = '50%';
+            banner.style.transform = 'translateX(-50%)';
+            break;
+        case 'preso embaixo':
+            banner.style.bottom = '0';
+            banner.style.left = '0';
+            banner.style.right = '0';
+            banner.style.margin = '0';
+            banner.style.maxWidth = '100%';
+            break;
+        case 'flutuando embaixo':
+            banner.style.bottom = '20px';
+            banner.style.left = '50%';
+            banner.style.transform = 'translateX(-50%)';
+            break;
+        case 'central':
+            banner.style.top = '50%';
+            banner.style.left = '50%';
+            banner.style.transform = 'translate(-50%, -50%)';
+            break;
+    }
 
-  cancelManageButton.addEventListener('click', () => {
-    manageOptions.style.display = 'none'; // Esconde as opções de gerenciamento
-  });
+    // Estilos adicionais para botões
+    const style = document.createElement('style');
+    style.textContent = `
+        #cookie-banner button {
+            padding: 8px 16px;
+            margin: 5px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: ${theme === 'branco' ? '#007bff' : '#ffffff'};
+            color: ${theme === 'branco' ? '#ffffff' : '#333333'};
+        }
+        #cookie-banner .consent-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        #cookie-banner a {
+            color: ${theme === 'branco' ? '#007bff' : '#ffffff'};
+        }
+    `;
 
-  saveManageButton.addEventListener('click', () => {
-    // Lógica para salvar as preferências de cookies
-    console.log("Salvar preferências");
-    // Aqui você adicionaria a lógica para salvar as preferências e definir os cookies
-    manageOptions.style.display = 'none'; // Esconde as opções de gerenciamento
-    banner.remove(); // remove o banner após a ação.
-  });
+    // Adicionar o banner e os estilos ao documento
+    document.head.appendChild(style);
+    document.body.appendChild(banner);
 
+    // Adicionar funcionalidade aos botões
+    document.getElementById('accept-all').addEventListener('click', () => {
+        banner.remove();
+        // Adicionar lógica para aceitar cookies
+    });
 
-  return banner;
+    document.getElementById('reject-all').addEventListener('click', () => {
+        banner.remove();
+        // Adicionar lógica para rejeitar cookies
+    });
+
+    document.getElementById('manage').addEventListener('click', () => {
+        const manageOptions = banner.querySelector('.manage-options');
+        manageOptions.style.display = manageOptions.style.display === 'none' ? 'block' : 'none';
+    });
+
+    document.getElementById('cancel-manage').addEventListener('click', () => {
+        banner.querySelector('.manage-options').style.display = 'none';
+    });
+
+    document.getElementById('save-manage').addEventListener('click', () => {
+        banner.remove();
+        // Adicionar lógica para salvar preferências
+    });
 }
-
-// Chama a função para criar o banner.
-createBanner();
 
 function hideBanner() {
     return null
@@ -143,6 +235,5 @@ function autoBlocking() {
 
 function start() {
   defaultConsent();
-  createBanner();
   window.addEventListener('DOMContentLoaded', checkConsent);
 }
