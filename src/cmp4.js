@@ -71,7 +71,7 @@ function defaultConsent() {
     });
 }
 
-function createBanner(urlBanner) {
+export function createBanner(urlBanner) {
     // Criar uma variável para o container no escopo da função
     let bannerContainer = document.createElement('div');
 
