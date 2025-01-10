@@ -100,6 +100,10 @@ function hideBanner() {
     return null
 }
 
+function checkConsent() {
+    console.log('default');
+}
+
 function autoBlocking() {
     const consentStateString = getCookie('pareto_consent_state');
     if (consentStateString) {
