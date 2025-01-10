@@ -21,6 +21,12 @@ function initializeBannerListeners() {
     const acceptAllInManage = document.querySelector('.btn-accept-all');
     const rejectAllInManage = document.querySelector('.btn-reject-all');
 
+    console.log('Elementos encontrados:', {
+        manageButton: !!manageButton,
+        manageSection: !!manageSection,
+        overlay: !!overlay
+    });
+
     // Listener para o botão "Gerenciar"
     manageButton?.addEventListener('click', () => {
         manageSection.style.display = 'block';
