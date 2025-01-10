@@ -302,7 +302,66 @@ input:checked + .toggle-slider:before {
     .manage-primary-buttons {
         flex-direction: column;
     }
-}
+
+    /* Botão flutuante de configurações */
+    .cookie-settings-button {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-color: var(--banner-bg-color);
+        border: none;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        cursor: pointer;
+        z-index: 9997;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        padding: 0;
+    }
+    
+    .cookie-settings-button:hover {
+        transform: scale(1.1);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    }
+    
+    .cookie-settings-button .cookie-icon,
+    .cookie-settings-button .settings-icon {
+        position: absolute;
+        transition: all 0.3s ease;
+        font-size: 24px;
+    }
+    
+    .cookie-settings-button .cookie-icon {
+        opacity: 1;
+    }
+    
+    .cookie-settings-button .settings-icon {
+        opacity: 0;
+    }
+    
+    .cookie-settings-button:hover .cookie-icon {
+        opacity: 0;
+    }
+    
+    .cookie-settings-button:hover .settings-icon {
+        opacity: 1;
+    }
+    
+    /* Responsividade para o botão */
+    @media (max-width: 480px) {
+        .cookie-settings-button {
+            bottom: 15px;
+            right: 15px;
+            width: 45px;
+            height: 45px;
+        }
+    }
+    
+    }
 </style>
 
 <div class="cookie-banner" role="dialog" aria-labelledby="cookie-title">
@@ -332,6 +391,11 @@ input:checked + .toggle-slider:before {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
         </p>
     </div>
+    <button class="cookie-settings-button" style="display: none;" aria-label="Abrir configurações de cookies">
+        <span class="cookie-icon">🍪</span>
+        <span class="settings-icon">⚙️</span>
+    </button>
+
 
     <div class="manage-primary-buttons">
         <button class="btn-reject-all">Recusar Todos</button>
