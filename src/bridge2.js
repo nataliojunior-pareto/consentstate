@@ -112,7 +112,7 @@ function autoBlocking() {
     }
 }
 
-function start() {
+export function start() {
   defaultConsent();
   window.addEventListener('DOMContentLoaded', checkConsent);
 }
