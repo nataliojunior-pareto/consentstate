@@ -96,10 +96,6 @@ export function createBanner(urlBanner) {
         });
 }
 
-function hideBanner() {
-    return null
-}
-
 function checkConsent() {
     console.log('default');
 }
