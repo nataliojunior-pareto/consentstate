@@ -285,6 +285,54 @@ input:checked + .toggle-slider:before {
     }
 }
 
+/* Botão flutuante de configurações */
+.cookie-settings-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--banner-bg-color);
+    border: none;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+    z-index: 9997;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.cookie-settings-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+}
+
+.cookie-settings-button .cookie-icon,
+.cookie-settings-button .settings-icon {
+    position: absolute;
+    transition: all 0.3s ease;
+    font-size: 24px;
+}
+
+.cookie-settings-button .cookie-icon {
+    opacity: 1;
+}
+
+.cookie-settings-button .settings-icon {
+    opacity: 0;
+}
+
+.cookie-settings-button:hover .cookie-icon {
+    opacity: 0;
+}
+
+.cookie-settings-button:hover .settings-icon {
+    opacity: 1;
+}
+    
 /* Responsividade */
 @media (max-width: 480px) {
     .cookie-banner {
@@ -308,55 +356,13 @@ input:checked + .toggle-slider:before {
         flex-direction: column;
     }
 
-    /* Botão flutuante de configurações */
     .cookie-settings-button {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: var(--banner-bg-color);
-        border: none;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        cursor: pointer;
-        z-index: 9997;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: all 0.3s ease;
-        padding: 0;
+        bottom: 15px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
     }
-    
-    .cookie-settings-button:hover {
-        transform: scale(1.1);
-        box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-    }
-    
-    .cookie-settings-button .cookie-icon,
-    .cookie-settings-button .settings-icon {
-        position: absolute;
-        transition: all 0.3s ease;
-        font-size: 24px;
-    }
-    
-    .cookie-settings-button .cookie-icon {
-        opacity: 1;
-    }
-    
-    .cookie-settings-button .settings-icon {
-        opacity: 0;
-    }
-    
-    .cookie-settings-button:hover .cookie-icon {
-        opacity: 0;
-    }
-    
-    .cookie-settings-button:hover .settings-icon {
-        opacity: 1;
-    }
-    
-    }
+}
 </style>
 
 <div class="cookie-banner" role="dialog" aria-labelledby="cookie-title">
