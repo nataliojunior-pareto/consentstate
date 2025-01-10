@@ -1,5 +1,92 @@
 <style>
-/* Adicionar ao CSS existente */
+/* Variáveis principais */
+:root {
+    --banner-bg-color: #ffffff;
+    --banner-text-color: #000000;
+    --button-primary-color: #0066cc;
+    --button-text-color: #ffffff;
+}
+
+/* Animação de fade-in */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Banner principal */
+.cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 1200px;
+    padding: 25px 30px;
+    background-color: var(--banner-bg-color);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    z-index: 9999;
+    border-radius: 12px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.cookie-banner.hidden {
+    transform: translate(-50%, 100%);
+}
+
+/* Texto do banner */
+.cookie-banner p {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 14px;
+    color: var(--banner-text-color);
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* Links */
+.cookie-banner a {
+    color: var(--button-primary-color);
+    text-decoration: underline;
+    transition: opacity 0.3s;
+}
+
+.cookie-banner a:hover {
+    opacity: 0.8;
+}
+
+/* Botões do banner principal */
+.consent-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.cookie-banner button {
+    min-width: 120px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.cookie-banner button#accept-all {
+    background-color: var(--button-primary-color);
+    color: var(--button-text-color);
+    border: none;
+}
+
+.cookie-banner button#manage {
+    background-color: transparent;
+    border: 1px solid var(--button-primary-color);
+    color: var(--button-primary-color);
+}
+
+.cookie-banner button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
 
 /* Overlay */
 .consent-overlay {
@@ -14,7 +101,7 @@
     animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Seção de gerenciamento centralizada */
+/* Seção de gerenciamento */
 .manage-options {
     display: none;
     position: fixed;
@@ -50,7 +137,7 @@
     margin-bottom: 30px;
 }
 
-/* Botões principais */
+/* Botões principais da seção de gerenciamento */
 .manage-primary-buttons {
     display: flex;
     gap: 15px;
@@ -79,10 +166,7 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: linear-gradient(
-        rgba(255,255,255,0.2),
-        transparent
-    );
+    background: linear-gradient(rgba(255,255,255,0.2), transparent);
     transform: rotate(45deg);
     animation: shine 3s infinite;
 }
@@ -173,7 +257,6 @@ input:checked + .toggle-slider:before {
     transform: translateX(24px);
 }
 
-/* Toggle desativado para "Necessários" */
 .toggle-switch.required input:disabled + .toggle-slider {
     background-color: #4CAF50;
     cursor: not-allowed;
@@ -199,6 +282,17 @@ input:checked + .toggle-slider:before {
 
 /* Responsividade */
 @media (max-width: 480px) {
+    .cookie-banner {
+        bottom: 15px;
+        width: calc(100% - 30px);
+        padding: 20px;
+    }
+    
+    .consent-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    
     .manage-options {
         width: 95%;
         padding: 20px;
@@ -211,7 +305,23 @@ input:checked + .toggle-slider:before {
 }
 </style>
 
-<!-- HTML da seção de gerenciamento -->
+<div class="cookie-banner" role="dialog" aria-labelledby="cookie-title">
+    <h1 id="cookie-title" class="visually-hidden">Preferências de Cookies</h1>
+    
+    <p>Usamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="/politica-de-privacidade">política de privacidade</a>.</p>
+    
+    <div class="consent-buttons">
+        <button id="manage" aria-label="Gerenciar preferências de cookies">
+            <span class="button-icon">⚙️</span>
+            Gerenciar
+        </button>
+        <button id="accept-all" aria-label="Aceitar todos os cookies">
+            <span class="button-icon">✓</span>
+            Aceitar
+        </button>
+    </div>
+</div>
+
 <div class="consent-overlay"></div>
 <div class="manage-options">
     <div class="manage-header">
@@ -226,7 +336,6 @@ input:checked + .toggle-slider:before {
         <button class="btn-accept-all">Aceitar Todos</button>
     </div>
 
-    <!-- Tipos de consentimento -->
     <div class="consent-types">
         <!-- Necessários -->
         <div class="consent-type-container">
