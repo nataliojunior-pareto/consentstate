@@ -1,0 +1,476 @@
+<style>
+/* Variáveis principais */
+:root {
+    --banner-bg-color: #ffffff;
+    --banner-text-color: #000000;
+    --button-primary-color: #0066cc;
+    --button-text-color: #ffffff;
+}
+
+/* Animação de fade-in */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Banner principal */
+.cookie-banner {
+    position: fixed;
+    bottom: 20px; /* Espaço da borda inferior */
+    left: 50%; /* Centralizar horizontalmente */
+    transform: translateX(-50%); /* Complemento para centralização */
+    width: calc(100% - 40px); /* Largura total menos margens laterais */
+    max-width: 1200px; /* Largura máxima para telas grandes */
+    padding: 25px 30px; /* Padding interno aumentado */
+    background-color: var(--banner-bg-color);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1); /* Sombra mais pronunciada */
+    z-index: 9999;
+    border-radius: 12px; /* Bordas arredondadas */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Ajuste na animação de esconder */
+.cookie-banner.hidden {
+    transform: translate(-50%, 100%); /* Mantém centralizado ao esconder */
+}
+
+/* Título oculto para acessibilidade */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+/* Texto do banner */
+.cookie-banner p {
+    font-family: 'Helvetica', sans-serif;
+    font-size: 14px;
+    color: var(--banner-text-color);
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+/* Links */
+.cookie-banner a {
+    color: var(--button-primary-color);
+    text-decoration: underline;
+    transition: opacity 0.3s;
+}
+
+.cookie-banner a:hover {
+    opacity: 0.8;
+}
+
+/* Ajuste no padding dos botões */
+.consent-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    margin-top: 20px; /* Espaço adicional acima dos botões */
+}
+
+.cookie-banner button {
+    min-width: 120px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+/* Estilo específico para cada botão */
+.cookie-banner button#accept-all {
+    background-color: var(--button-primary-color);
+    color: var(--button-text-color);
+    border: none;
+}
+
+.cookie-banner button#manage {
+    background-color: transparent;
+    border: 1px solid var(--button-primary-color);
+    color: var(--button-primary-color);
+}
+
+.cookie-banner button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+/* Seção de gerenciamento */
+.manage-options {
+    margin-top: 20px;
+    padding: 20px;
+    border-top: 1px solid #eee;
+    transition: all 0.3s ease-in-out;
+}
+
+.manage-options h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--banner-text-color);
+}
+
+/* Ícones (usando emoji como placeholder - você pode substituir por SVG ou fonte de ícones) */
+.button-icon {
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .cookie-banner {
+        bottom: 15px; /* Menor margem em mobile */
+        width: calc(100% - 30px); /* Menor margem lateral em mobile */
+        padding: 20px; /* Padding menor em mobile */
+    }
+    
+    .consent-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+}
+
+/* Overlay */
+.consent-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9998;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Seção de gerenciamento centralizada */
+.manage-options {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background-color: var(--banner-bg-color);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    z-index: 9999;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+/* Cabeçalho da seção */
+.manage-header {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.manage-header h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.manage-description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Botões principais */
+.manage-primary-buttons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.manage-primary-buttons button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.btn-accept-all {
+    background-color: var(--button-primary-color);
+    color: white;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-accept-all::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        rgba(255,255,255,0.2),
+        transparent
+    );
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+}
+
+.btn-reject-all {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    color: #666;
+}
+
+/* Containers de consentimento */
+.consent-type-container {
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.consent-type-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.consent-type-title {
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.consent-type-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--button-primary-color);
+}
+
+.consent-type-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 26px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .3s;
+    border-radius: 34px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: var(--button-primary-color);
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(24px);
+}
+
+/* Toggle desativado para "Necessários" */
+.toggle-switch.required input:disabled + .toggle-slider {
+    background-color: #4CAF50;
+    cursor: not-allowed;
+}
+
+/* Animações */
+@keyframes slideIn {
+    from {
+        transform: translate(-50%, -60%);
+        opacity: 0;
+    }
+    to {
+        transform: translate(-50%, -50%);
+        opacity: 1;
+    }
+}
+
+@keyframes shine {
+    to {
+        transform: rotate(45deg) translate(50%, 50%);
+    }
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .manage-options {
+        width: 95%;
+        padding: 20px;
+        max-height: 90vh;
+    }
+
+    .manage-primary-buttons {
+        flex-direction: column;
+    }
+}
+</style>
+
+<div class="cookie-banner" role="dialog" aria-labelledby="cookie-title">
+    <h1 id="cookie-title" class="visually-hidden">Preferências de Cookies</h1>
+    
+    <p>Usamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="/politica-de-privacidade">política de privacidade</a>.</p>
+    
+    <div class="consent-buttons">
+        <button id="manage" aria-label="Gerenciar preferências de cookies">
+            <span class="button-icon">⚙️</span>
+            Gerenciar
+        </button>
+        <button id="accept-all" aria-label="Aceitar todos os cookies">
+            <span class="button-icon">✓</span>
+            Aceitar
+        </button>
+    </div>
+    
+    <div class="manage-options" style="display:none;">
+        <h2>Preferências de coleta de dados do site</h2>
+        <div class="consent-options-container"></div>
+        <div class="consent-buttons">
+            <button id="cancel-manage">Cancelar</button>
+            <button id="save-manage">Salvar</button>
+        </div>
+    </div>
+</div>
+<!-- HTML da seção de gerenciamento -->
+<div class="consent-overlay"></div>
+<div class="manage-options">
+    <div class="manage-header">
+        <h2>Configurações de Privacidade</h2>
+        <p class="manage-description">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+    </div>
+
+    <div class="manage-primary-buttons">
+        <button class="btn-reject-all">Recusar Todos</button>
+        <button class="btn-accept-all">Aceitar Todos</button>
+    </div>
+
+    <!-- Tipos de consentimento -->
+    <div class="consent-types">
+        <!-- Necessários -->
+        <div class="consent-type-container">
+            <div class="consent-type-header">
+                <span class="consent-type-title">
+                    <i class="consent-type-icon">🔒</i>
+                    Necessários
+                </span>
+                <label class="toggle-switch required">
+                    <input type="checkbox" checked disabled>
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <p class="consent-type-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+        </div>
+
+        <!-- Funcionalidade -->
+        <div class="consent-type-container">
+            <div class="consent-type-header">
+                <span class="consent-type-title">
+                    <i class="consent-type-icon">⚙️</i>
+                    Funcionalidade
+                </span>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <p class="consent-type-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+        </div>
+
+        <!-- Experiência -->
+        <div class="consent-type-container">
+            <div class="consent-type-header">
+                <span class="consent-type-title">
+                    <i class="consent-type-icon">✨</i>
+                    Experiência
+                </span>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <p class="consent-type-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+        </div>
+
+        <!-- Medição -->
+        <div class="consent-type-container">
+            <div class="consent-type-header">
+                <span class="consent-type-title">
+                    <i class="consent-type-icon">📊</i>
+                    Medição
+                </span>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <p class="consent-type-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+        </div>
+
+        <!-- Marketing -->
+        <div class="consent-type-container">
+            <div class="consent-type-header">
+                <span class="consent-type-title">
+                    <i class="consent-type-icon">🎯</i>
+                    Marketing
+                </span>
+                <label class="toggle-switch">
+                    <input type="checkbox">
+                    <span class="toggle-slider"></span>
+                </label>
+            </div>
+            <p class="consent-type-description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            </p>
+        </div>
+    </div>
+</div>
