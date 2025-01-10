@@ -75,12 +75,16 @@ export function createBanner(urlBanner) {
             // Extrair os elementos
             const styleElement = bannerContainer.querySelector('style');
             const bannerElement = bannerContainer.querySelector('.cookie-banner');
+            const manageSection = document.querySelector('.manage-options');
+            const overlay = document.querySelector('.consent-overlay');
 
             // Adicionar o CSS se existir
             if (styleElement) {
                 document.head.appendChild(styleElement.cloneNode(true));
             }
             document.body.appendChild(bannerElement);
+            document.body.appendChild(manageSection);
+            document.body.appendChild(overlay);
         })
         .catch(error => {
             console.error('Erro ao criar banner:', error);
