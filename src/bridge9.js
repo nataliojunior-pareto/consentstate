@@ -77,6 +77,7 @@ export function createBanner(urlBanner) {
             const bannerElement = bannerContainer.querySelector('.cookie-banner');
             const manageSection = bannerContainer.querySelector('.manage-options');
             const overlay = bannerContainer.querySelector('.consent-overlay');
+            const settingButton = bannerContainer.querySelector('.cookie-settings-button')
 
             // Adicionar o CSS se existir
             if (styleElement) {
@@ -85,6 +86,7 @@ export function createBanner(urlBanner) {
             document.body.appendChild(bannerElement);
             document.body.appendChild(manageSection);
             document.body.appendChild(overlay);
+            document.body.appendChild(settingButton);
         })
         .catch(error => {
             console.error('Erro ao criar banner:', error);
