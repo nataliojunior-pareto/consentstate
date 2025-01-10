@@ -27,10 +27,15 @@
     z-index: 9999;
     border-radius: 12px;
     animation: fadeIn 0.5s ease-in-out;
+    transition: transform 0.3s ease-in-out, visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    visibility: visible;
+    opacity: 1;
 }
 
 .cookie-banner.hidden {
     transform: translate(-50%, 100%);
+    visibility: hidden; /* Garante que o banner fique inacessível quando oculto */
+    opacity: 0;
 }
 
 /* Texto do banner */
