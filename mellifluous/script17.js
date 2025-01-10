@@ -1,6 +1,6 @@
-const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/mellifluous/banner-template7.html';
+const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/mellifluous/banner-template9.html';
 
-import { createBanner, start } from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge8.js';
+import { createBanner, start } from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge9.js';
 
 async function initializeCMP() {
     try {
@@ -19,6 +19,11 @@ function initializeBannerListeners() {
     const overlay = document.querySelector('.consent-overlay');
     const acceptAllInManage = document.querySelector('.btn-accept-all');
     const rejectAllInManage = document.querySelector('.btn-reject-all');
+    const settingsButton = document.querySelector('.cookie-settings-button');
+    
+    settingsButton?.addEventListener('click', () => {
+        showBanner();
+    });
 
     manageButton?.addEventListener('click', () => {
         manageSection.style.display = 'block';
@@ -66,12 +71,27 @@ function closeManageSection() {
 
 function hideBanner() {
     const banner = document.querySelector('.cookie-banner');
+    const settingsButton = document.querySelector('.cookie-settings-button');
+    
     if (!banner) return;
 
     banner.classList.add('hidden');
-    setTimeout(() => {
-        banner?.remove();
-    }, 300);
+    if (settingsButton) {
+        settingsButton.style.display = 'flex';
+    }
+}
+
+function showBanner() {
+    const banner = document.querySelector('.cookie-banner');
+    const settingsButton = document.querySelector('.cookie-settings-button');
+    
+    if (banner) {
+        banner.classList.remove('hidden');
+    }
+    
+    if (settingsButton) {
+        settingsButton.style.display = 'none';
+    }
 }
 
 initializeCMP();
