@@ -75,8 +75,8 @@ export function createBanner(urlBanner) {
             // Extrair os elementos
             const styleElement = bannerContainer.querySelector('style');
             const bannerElement = bannerContainer.querySelector('.cookie-banner');
-            const manageSection = document.querySelector('.manage-options');
-            const overlay = document.querySelector('.consent-overlay');
+            const manageSection = bannerContainer.querySelector('.manage-options');
+            const overlay = bannerContainer.querySelector('.consent-overlay');
 
             // Adicionar o CSS se existir
             if (styleElement) {
