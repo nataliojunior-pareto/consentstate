@@ -1,6 +1,6 @@
 const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/mellifluous/banner-template16.html';
 
-import { createBanner, start, updateConsent, consentOptions, acceptAllConsents, rejectAllConsents, updateManagedConsents} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge13.js';
+import { createBanner, start, updateConsent, acceptAllConsents, rejectAllConsents, updateManagedConsents} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge13.js';
 
 async function initializeCMP() {
     try {
