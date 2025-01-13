@@ -8,6 +8,69 @@ const consentOptions = [
   'security_storage',
 ];
 
+// Mapeamento dos tipos de consentimento com suas respectivas opções
+const consentMapping = {
+    'medicao': ['ad_storage', 'ad_user_data'],
+    'marketing': ['analytics_storage'],
+    'experiencia': ['ad_personalization', 'personalization_storage'],
+    'funcionalidade': ['functionality_storage', 'security_storage']
+};
+
+// Função para gerar objeto de consentimento baseado nas escolhas
+function generateConsentObject(choices) {
+    const consentObject = {};
+    
+    // Inicializa todas as opções como 'denied'
+    consentOptions.forEach(option => {
+        consentObject[option] = 'denied';
+    });
+
+    // Atualiza as opções baseado nas escolhas
+    Object.entries(choices).forEach(([type, isGranted]) => {
+        if (consentMapping[type]) {
+            consentMapping[type].forEach(option => {
+                consentObject[option] = isGranted ? 'granted' : 'denied';
+            });
+        }
+    });
+
+    return consentObject;
+}
+
+// Funções para os diferentes cenários de consentimento
+function acceptAllConsents() {
+    const consentObject = {};
+    consentOptions.forEach(option => {
+        consentObject[option] = 'granted';
+    });
+    updateConsent(consentObject);
+}
+
+function rejectAllConsents() {
+    const consentObject = {};
+    consentOptions.forEach(option => {
+        consentObject[option] = 'denied';
+    });
+    updateConsent(consentObject);
+}
+
+function updateManagedConsents() {
+    const choices = getToggleStates();
+    const consentObject = generateConsentObject(choices);
+    updateConsent(consentObject);
+}
+
+// Função para coletar estado atual dos toggles
+function getToggleStates() {
+    const choices = {
+        'medicao': document.querySelector('[data-consent-type="medicao"] input').checked,
+        'marketing': document.querySelector('[data-consent-type="marketing"] input').checked,
+        'experiencia': document.querySelector('[data-consent-type="experiencia"] input').checked,
+        'funcionalidade': document.querySelector('[data-consent-type="funcionalidade"] input').checked
+    };
+    return choices;
+}
+
 function getCookie(name) {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
