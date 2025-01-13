@@ -96,9 +96,8 @@ function setCookie(name, value, days) {
 }
 
 function updateConsent(consentObject) {
-    //gtag('consent', 'update', consentObject);
+    gtag('consent', 'update', consentObject);
     setCookie('pareto_consent_state', consentObject, 90);
-    consentBanner.style.display = 'none';
     setTimeout(() => {
       dataLayer.push({
       'consent_state': consentObject,
