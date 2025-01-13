@@ -183,15 +183,22 @@
 }
 
 .btn-save-changes {
-    background-color: var(--button-primary-color);
-    color: white;
+    background-color: #4CAF50;
+    color: var(--button-text-color);
     border: none;
-    position: relative;
-    overflow: hidden;
-    width: 100%; /* Ocupa toda a largura */
-    margin-top: 15px; /* Espaço acima do botão */
+    border-radius: 6px;
+    padding: 12px;
+    width: 100%;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
+.btn-save-changes:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
 
 /* Containers de consentimento */
 .consent-type-container {
@@ -412,7 +419,6 @@ input:checked + .toggle-slider:before {
     <div class="manage-primary-buttons">
         <button class="btn-reject-all">Recusar Todos</button>
         <button class="btn-accept-all">Aceitar Todos</button>
-        <button class="btn-save-changes">Confirmar alterações</button>
     </div>
 
     <div class="consent-types">
@@ -500,6 +506,8 @@ input:checked + .toggle-slider:before {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     </p>
 </div>
+   
+<button class="btn-save-changes">Confirmar alterações</button>
 
 <button class="cookie-settings-button" style="display: none;" aria-label="Abrir configurações de cookies">
     <span class="cookie-icon">🍪</span>
