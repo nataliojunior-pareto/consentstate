@@ -1,6 +1,6 @@
-const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/mellifluous/banner-template15.html';
+const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/mellifluous/banner-template16.html';
 
-import { createBanner, start } from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge11.js';
+import { createBanner, start, updateConsent, consentOptions, acceptAllConsents, rejectAllConsents, updateManagedConsents} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge12.js';
 
 async function initializeCMP() {
     try {
@@ -36,13 +36,16 @@ function initializeBannerListeners() {
     });
 
     acceptButton?.addEventListener('click', () => {
+        acceptAllConsents();
         hideBanner();
     });
 
     acceptAllInManage?.addEventListener('click', () => {
+        // Marcar todos os toggles visualmente
         document.querySelectorAll('.toggle-switch input:not([disabled])')
             .forEach(toggle => toggle.checked = true);
         
+        acceptAllConsents();
         setTimeout(() => {
             closeManageSection();
             hideBanner();
@@ -50,13 +53,19 @@ function initializeBannerListeners() {
     });
 
     rejectAllInManage?.addEventListener('click', () => {
+        // Desmarcar todos os toggles visualmente
         document.querySelectorAll('.toggle-switch input:not([disabled])')
             .forEach(toggle => toggle.checked = false);
         
+        rejectAllConsents();
         setTimeout(() => {
             closeManageSection();
             hideBanner();
         }, 300);
+    });
+
+    settingsButton?.addEventListener('click', () => {
+        showBanner();
     });
 }
 
