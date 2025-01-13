@@ -81,10 +81,10 @@ export function updateManagedConsents() {
 // Função para coletar estado atual dos toggles
 function getToggleStates() {
     const choices = {
-        'medicao': document.querySelector('[data-consent-type="medicao"] input').checked,
-        'marketing': document.querySelector('[data-consent-type="marketing"] input').checked,
-        'experiencia': document.querySelector('[data-consent-type="experiencia"] input').checked,
-        'funcionalidade': document.querySelector('[data-consent-type="funcionalidade"] input').checked
+        'medicao': document.querySelector('[data-consent-type="medicao"]').checked,
+        'marketing': document.querySelector('[data-consent-type="marketing"]').checked,
+        'experiencia': document.querySelector('[data-consent-type="experiencia"]').checked,
+        'funcionalidade': document.querySelector('[data-consent-type="funcionalidade"]').checked
     };
     return choices;
 }
