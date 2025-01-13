@@ -182,6 +182,17 @@
     color: #666;
 }
 
+.btn-save-changes {
+    background-color: var(--button-primary-color);
+    color: white;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    width: 100%; /* Ocupa toda a largura */
+    margin-top: 15px; /* Espaço acima do botão */
+}
+
+
 /* Containers de consentimento */
 .consent-type-container {
     background-color: #f8f8f8;
@@ -362,6 +373,10 @@ input:checked + .toggle-slider:before {
         width: 45px;
         height: 45px;
     }
+
+    .manage-primary-buttons {
+        flex-direction: column;
+    }
 }
 </style>
 
@@ -397,6 +412,7 @@ input:checked + .toggle-slider:before {
     <div class="manage-primary-buttons">
         <button class="btn-reject-all">Recusar Todos</button>
         <button class="btn-accept-all">Aceitar Todos</button>
+        <button class="btn-save-changes">Confirmar alterações</button>
     </div>
 
     <div class="consent-types">
