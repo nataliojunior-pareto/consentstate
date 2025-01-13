@@ -38,7 +38,7 @@ function generateConsentObject(choices) {
 }
 
 // Funções para os diferentes cenários de consentimento
-function acceptAllConsents() {
+export function acceptAllConsents() {
     const consentObject = {};
     consentOptions.forEach(option => {
         consentObject[option] = 'granted';
@@ -46,7 +46,7 @@ function acceptAllConsents() {
     updateConsent(consentObject);
 }
 
-function rejectAllConsents() {
+export function rejectAllConsents() {
     const consentObject = {};
     consentOptions.forEach(option => {
         consentObject[option] = 'denied';
@@ -54,7 +54,7 @@ function rejectAllConsents() {
     updateConsent(consentObject);
 }
 
-function updateManagedConsents() {
+export function updateManagedConsents() {
     const choices = getToggleStates();
     const consentObject = generateConsentObject(choices);
     updateConsent(consentObject);
