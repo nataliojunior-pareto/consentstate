@@ -16,6 +16,24 @@ const consentMapping = {
     'funcionalidade': ['functionality_storage', 'security_storage']
 };
 
+function updateTogglesFromSavedState(consentState) {
+    // Reverte o mapeamento para encontrar quais tipos devem estar marcados
+    const toggleStates = {
+        medicao: consentState.ad_storage === 'granted' && consentState.ad_user_data === 'granted',
+        marketing: consentState.analytics_storage === 'granted',
+        experiencia: consentState.ad_personalization === 'granted' && consentState.personalization_storage === 'granted',
+        funcionalidade: consentState.functionality_storage === 'granted' && consentState.security_storage === 'granted'
+    };
+
+    // Atualiza cada toggle
+    Object.entries(toggleStates).forEach(([type, isGranted]) => {
+        const toggle = document.querySelector(`[data-consent-type="${type}"] input`);
+        if (toggle) {
+            toggle.checked = isGranted;
+        }
+    });
+}
+
 // Função para gerar objeto de consentimento baseado nas escolhas
 function generateConsentObject(choices) {
     const consentObject = {};
@@ -159,15 +177,28 @@ function checkConsent() {
     console.log('default');
 }
 
-function autoBlocking() {
+export async function autoBlocking() {
     const consentStateString = getCookie('pareto_consent_state');
+    const banner = document.querySelector('.cookie-banner');
+    const settingsButton = document.querySelector('.cookie-settings-button');
+
     if (consentStateString) {
-        consentBanner.style.display = 'none';
-        const consentState = JSON.parse(consentStateString);
-        updateConsent(consentState)
+        try {
+            const consentState = JSON.parse(consentStateString);
+            banner.classList.add('hidden');
+            settingsButton.style.display = 'flex'; // Mostra o botão flutuante
+            updateConsent(consentState);
+            
+            // Atualiza os toggles conforme o estado salvo
+            updateTogglesFromSavedState(consentState);
+        } catch (error) {
+            console.error('Erro ao processar estado do consentimento:', error);
+            banner.classList.remove('hidden');
+            settingsButton.style.display = 'none';
+        }
     } else {
-        // Consentimento não dado, mostra o banner
-        consentBanner.style.display = 'flex';
+        banner.classList.remove('hidden');
+        settingsButton.style.display = 'none';
     }
 }
 
