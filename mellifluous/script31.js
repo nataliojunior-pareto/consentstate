@@ -1,11 +1,12 @@
-const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/mellifluous/banner-template16.html';
+const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/mellifluous/banner-template17.html';
 
-import { createBanner, start, acceptAllConsents, rejectAllConsents, updateManagedConsents} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge14.js';
+import { createBanner, start, acceptAllConsents, rejectAllConsents, updateManagedConsents, autoBlocking} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge15.js';
 
 async function initializeCMP() {
     try {
         await start();
         await createBanner(url);
+        await autoBlocking();
         initializeBannerListeners();
     } catch (error) {
         console.error('Erro ao inicializar CMP:', error);
@@ -20,6 +21,7 @@ function initializeBannerListeners() {
     const acceptAllInManage = document.querySelector('.btn-accept-all');
     const rejectAllInManage = document.querySelector('.btn-reject-all');
     const settingsButton = document.querySelector('.cookie-settings-button');
+    const saveChangesButton = document.querySelector('.btn-save-changes');
     
     settingsButton?.addEventListener('click', () => {
         showBanner();
@@ -62,6 +64,12 @@ function initializeBannerListeners() {
             closeManageSection();
             hideBanner();
         }, 300);
+    });
+
+    saveChangesButton?.addEventListener('click', () => {
+        updateManagedConsents();
+        closeManageSection();
+        hideBanner();
     });
 
     settingsButton?.addEventListener('click', () => {
