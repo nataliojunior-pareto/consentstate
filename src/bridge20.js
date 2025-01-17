@@ -181,12 +181,14 @@ export async function autoBlocking() {
     const consentStateString = getCookie('pareto_consent_state');
     const banner = document.querySelector('.cookie-banner');
     const settingsButton = document.querySelector('.cookie-settings-button');
+    const acceptButton = document.querySelector('.accept-button');
 
     if (consentStateString) {
         try {
             const consentState = JSON.parse(consentStateString);
             banner.classList.add('hidden');
             settingsButton.style.display = 'flex'; // Mostra o botão flutuante
+            acceptButton.style.display = 'none';
             updateConsent(consentState);
             
             // Atualiza os toggles conforme o estado salvo
