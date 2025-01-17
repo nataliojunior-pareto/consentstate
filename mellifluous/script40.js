@@ -1,6 +1,6 @@
 const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/mellifluous/banner-template24.html';
 
-import { createBanner, start, acceptAllConsents, rejectAllConsents, updateManagedConsents, autoBlocking} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge19.js';
+import { createBanner, start, acceptAllConsents, rejectAllConsents, updateManagedConsents, autoBlocking} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge20.js';
 
 async function initializeCMP() {
     try {
@@ -89,16 +89,11 @@ function closeManageSection() {
 function hideBanner() {
     const banner = document.querySelector('.cookie-banner');
     const settingsButton = document.querySelector('.cookie-settings-button');
-    const acceptButton = document.querySelector('.accept-button');
     
     if (banner) {
         banner.classList.add('hidden');
         if (settingsButton) {
             settingsButton.style.display = 'flex';
-        }
-        // Esconde o botão "Aceitar"
-        if (acceptButton) {
-            acceptButton.style.display = 'none';
         }
     }
 }
