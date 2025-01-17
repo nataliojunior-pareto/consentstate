@@ -1,15 +1,15 @@
 const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/mellifluous/banner-template24.html';
 
-import { createBanner, start, acceptAllConsents, rejectAllConsents, updateManagedConsents, autoBlocking} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge22.js';
+import { createBanner, defaultConsent, acceptAllConsents, rejectAllConsents, updateManagedConsents, autoBlocking} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge23.js';
 
+defaultConsent();
 initializeCMP();
 
-function initializeCMP() {
+async function initializeCMP() {
     try {
-        start();
-        createBanner(url);
-        autoBlocking();
-        initializeBannerListeners();
+        await createBanner(url);
+        await autoBlocking();
+        await initializeBannerListeners();
     } catch (error) {
         console.error('Erro ao inicializar CMP:', error);
     }
