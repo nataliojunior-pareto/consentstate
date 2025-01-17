@@ -19,9 +19,9 @@ const consentMapping = {
 function updateTogglesFromSavedState(consentState) {
     // Reverte o mapeamento para encontrar quais tipos devem estar marcados
     const toggleStates = {
-        medicao: consentState.ad_storage === 'granted' && consentState.ad_user_data === 'granted',
-        marketing: consentState.analytics_storage === 'granted',
-        experiencia: consentState.ad_personalization === 'granted' && consentState.personalization_storage === 'granted',
+        anuncios: consentState.ad_storage === 'granted' && consentState.ad_user_data === 'granted' && consentState.ad_personalization === 'granted',
+        analise: consentState.analytics_storage === 'granted',
+        personalizacao: consentState.personalization_storage === 'granted',
         funcionalidade: consentState.functionality_storage === 'granted' && consentState.security_storage === 'granted'
     };
 
