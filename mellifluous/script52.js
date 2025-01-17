@@ -2,9 +2,7 @@ const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/
 
 import { createBanner, acceptAllConsents, rejectAllConsents, updateManagedConsents, autoBlocking} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge23.js';
 
-function defaultConsent() {
-  // Inicialização dataLayer e configurações iniciais
-    window.dataLayer = window.dataLayer || [];
+window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     
     gtag('consent', 'default', {
@@ -18,8 +16,7 @@ function defaultConsent() {
       'wait_for_update': 500,
       'region': ['BR']
     });
-}
-defaultConsent();
+
 initializeCMP();
 
 async function initializeCMP() {
