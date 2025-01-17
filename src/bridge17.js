@@ -10,9 +10,9 @@ const consentOptions = [
 
 // Mapeamento dos tipos de consentimento com suas respectivas opções
 const consentMapping = {
-    'medicao': ['ad_storage', 'ad_user_data'],
-    'marketing': ['analytics_storage'],
-    'experiencia': ['ad_personalization', 'personalization_storage'],
+    'anuncios': ['ad_storage', 'ad_user_data', 'ad_personalization'],
+    'analise': ['analytics_storage'],
+    'personalizacao': ['personalization_storage'],
     'funcionalidade': ['functionality_storage', 'security_storage']
 };
 
@@ -81,9 +81,9 @@ export function updateManagedConsents() {
 // Função para coletar estado atual dos toggles
 function getToggleStates() {
     const choices = {
-        'medicao': document.querySelector('[data-consent-type="medicao"]').checked,
-        'marketing': document.querySelector('[data-consent-type="marketing"]').checked,
-        'experiencia': document.querySelector('[data-consent-type="experiencia"]').checked,
+        'medicao': document.querySelector('[data-consent-type="anuncios"]').checked,
+        'marketing': document.querySelector('[data-consent-type="analise"]').checked,
+        'experiencia': document.querySelector('[data-consent-type="personalizacao"]').checked,
         'funcionalidade': document.querySelector('[data-consent-type="funcionalidade"]').checked
     };
     return choices;
