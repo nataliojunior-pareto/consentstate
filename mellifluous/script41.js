@@ -89,11 +89,16 @@ function closeManageSection() {
 function hideBanner() {
     const banner = document.querySelector('.cookie-banner');
     const settingsButton = document.querySelector('.cookie-settings-button');
+    const acceptButton = document.querySelector('.accept-button');
     
     if (banner) {
         banner.classList.add('hidden');
         if (settingsButton) {
             settingsButton.style.display = 'flex';
+        }
+        // Esconde o botão "Aceitar"
+        if (acceptButton) {
+            acceptButton.style.display = 'none';
         }
     }
 }
