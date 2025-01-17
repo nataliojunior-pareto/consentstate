@@ -1,10 +1,12 @@
 const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/mellifluous/banner-template24.html';
 
-import { createBanner, start, acceptAllConsents, rejectAllConsents, updateManagedConsents, autoBlocking} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge24.js';
+import { createBanner, start, defaultConsent, acceptAllConsents, rejectAllConsents, updateManagedConsents, autoBlocking} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge24.js';
+
+defaultConsent();
 
 async function initializeCMP() {
     try {
-        await start();
+        //await start();
         await createBanner(url);
         await autoBlocking();
         initializeBannerListeners();
