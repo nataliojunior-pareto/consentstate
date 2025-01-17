@@ -126,7 +126,7 @@ function updateConsent(consentObject) {
     }, 1000);
 }
 
-export function defaultConsent() {
+function defaultConsent() {
   // Inicialização dataLayer e configurações iniciais
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -206,7 +206,7 @@ export async function autoBlocking() {
     }
 }
 
-function start() {
+export function start() {
   defaultConsent();
-  //window.addEventListener('DOMContentLoaded', checkConsent);
+  window.addEventListener('DOMContentLoaded', checkConsent);
 }
