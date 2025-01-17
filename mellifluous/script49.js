@@ -2,6 +2,8 @@ const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/
 
 import { createBanner, start, acceptAllConsents, rejectAllConsents, updateManagedConsents, autoBlocking} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge22.js';
 
+initializeCMP();
+
 function initializeCMP() {
     try {
         start();
@@ -115,5 +117,3 @@ function showBanner() {
         settingsButton.style.display = 'none';
     }
 }
-
-initializeCMP();
