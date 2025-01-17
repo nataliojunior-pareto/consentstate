@@ -126,7 +126,7 @@ function updateConsent(consentObject) {
     }, 1000);
 }
 
-function defaultConsent() {
+export function defaultConsent() {
   // Inicialização dataLayer e configurações iniciais
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
