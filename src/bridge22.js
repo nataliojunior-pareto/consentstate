@@ -208,5 +208,5 @@ export async function autoBlocking() {
 
 export function start() {
   defaultConsent();
-  window.addEventListener('DOMContentLoaded', checkConsent);
+  //window.addEventListener('DOMContentLoaded', checkConsent);
 }
