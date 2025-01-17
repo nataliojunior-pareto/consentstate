@@ -4,6 +4,7 @@ import { createBanner, defaultConsent, acceptAllConsents, rejectAllConsents, upd
 
 async function initializeCMP() {
     try {
+        defaultConsent();
         await createBanner(url);
         await autoBlocking();
         await initializeBannerListeners();
