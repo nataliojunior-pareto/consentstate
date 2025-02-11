@@ -156,7 +156,7 @@ export function createBanner(urlBanner) {
 
             // Extrair os elementos
             const styleElement = bannerContainer.querySelector('style');
-            const bannerElement = bannerContainer.querySelector('.cookie-banner');
+            const bannerElement = bannerContainer.querySelector('.cookiee-banner');
             const manageSection = bannerContainer.querySelector('.manage-options');
             const overlay = bannerContainer.querySelector('.consent-overlay');
             const settingButton = bannerContainer.querySelector('.cookie-settings-button')
@@ -181,7 +181,7 @@ function checkConsent() {
 
 export async function autoBlocking() {
     const consentStateString = getCookie('pareto_consent_state');
-    const banner = document.querySelector('.cookie-banner');
+    const banner = document.querySelector('.cookiee-banner');
     const settingsButton = document.querySelector('.cookie-settings-button');
     const acceptButton = document.querySelector('.accept-button');
 
