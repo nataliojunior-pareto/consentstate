@@ -2,24 +2,9 @@ const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/
 
 import { createBanner, start, defaultConsent, acceptAllConsents, rejectAllConsents, updateManagedConsents, autoBlocking} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge25.js';
 
-window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    
-    gtag('consent', 'default', {
-      'ad_storage': 'denied',
-      'ad_user_data': 'denied',
-      'ad_personalization': 'denied',
-      'analytics_storage': 'denied',
-      'personalization_storage': 'denied',
-      'functionality_storage': 'denied',
-      'security_storage': 'denied',
-      'wait_for_update': 500,
-      'region': ['BR']
-    });
-
 async function initializeCMP() {
     try {
-        //await start();
+        await start();
         await createBanner(url);
         await autoBlocking();
         initializeBannerListeners();
