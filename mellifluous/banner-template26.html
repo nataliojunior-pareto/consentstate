@@ -14,7 +14,7 @@
 }
 
 /* Banner principal */
-.cookie-banner {
+.cookiee-banner {
     position: fixed;
     bottom: 20px;
     left: 50%;
@@ -32,14 +32,14 @@
     opacity: 1;
 }
 
-.cookie-banner.hidden {
+.cookiee-banner.hidden {
     transform: translate(-50%, 100%);
     visibility: hidden; /* Garante que o banner fique inacessível quando oculto */
     opacity: 0;
 }
 
 /* Texto do banner */
-.cookie-banner p {
+.cookiee-banner p {
     font-family: 'Helvetica', sans-serif;
     font-size: 14px;
     color: var(--banner-text-color);
@@ -48,13 +48,13 @@
 }
 
 /* Links */
-.cookie-banner a {
+.cookiee-banner a {
     color: var(--button-primary-color);
     text-decoration: underline;
     transition: opacity 0.3s;
 }
 
-.cookie-banner a:hover {
+.cookiee-banner a:hover {
     opacity: 0.8;
 }
 
@@ -67,7 +67,7 @@
     margin-top: 20px;
 }
 
-.cookie-banner button {
+.cookiee-banner button {
     min-width: 120px;
     padding: 10px 20px;
     border-radius: 4px;
@@ -76,19 +76,19 @@
     transition: all 0.3s ease;
 }
 
-.cookie-banner button#accept-all {
+.cookiee-banner button#accept-all {
     background-color: var(--button-primary-color);
     color: var(--button-text-color);
     border: none;
 }
 
-.cookie-banner button#manage {
+.cookiee-banner button#manage {
     background-color: transparent;
     border: 1px solid var(--button-primary-color);
     color: var(--button-primary-color);
 }
 
-.cookie-banner button:hover {
+.cookiee-banner button:hover {
     opacity: 0.9;
     transform: translateY(-1px);
 }
@@ -355,7 +355,7 @@ input:checked + .toggle-slider:before {
     
 /* Responsividade */
 @media (max-width: 480px) {
-    .cookie-banner {
+    .cookiee-banner {
         bottom: 15px;
         width: calc(100% - 30px);
         padding: 20px;
@@ -388,7 +388,7 @@ input:checked + .toggle-slider:before {
 }
 </style>
 
-<div class="cookie-banner" role="dialog" aria-labelledby="cookie-title">
+<div class="cookiee-banner" role="dialog" aria-labelledby="cookie-title">
     <h1 id="cookie-title" class="visually-hidden">Preferências de Cookies</h1>
     
     <p>Usamos cookies para melhorar sua experiência. Ao continuar, você concorda com nossa <a href="/politica-de-privacidade">política de privacidade</a>.</p>
