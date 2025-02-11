@@ -145,13 +145,10 @@ export function defaultConsent() {
 }
 
 export function createBanner(urlBanner) {
-    // Criar uma variável para o container no escopo da função
-    let bannerContainer = document.createElement('div');
-
     return fetch(urlBanner)
         .then(response => response.text())
         .then(html => {
-            // Inserir o HTML no container
+            const bannerContainer = document.createElement('div');
             bannerContainer.innerHTML = html;
 
             // Extrair os elementos
@@ -159,7 +156,7 @@ export function createBanner(urlBanner) {
             const bannerElement = bannerContainer.querySelector('.cookiee-banner');
             const manageSection = bannerContainer.querySelector('.manage-options');
             const overlay = bannerContainer.querySelector('.consent-overlay');
-            const settingButton = bannerContainer.querySelector('.cookie-settings-button')
+            const settingButton = bannerContainer.querySelector('.cookie-settings-button');
 
             // Adicionar o CSS se existir
             if (styleElement) {
