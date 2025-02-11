@@ -87,7 +87,7 @@ function closeManageSection() {
 }
 
 function hideBanner() {
-    const banner = document.querySelector('.cookie-banner');
+    const banner = document.querySelector('.cookiee-banner');
     const settingsButton = document.querySelector('.cookie-settings-button');
     const acceptButton = document.querySelector('.accept-button');
     
@@ -104,7 +104,7 @@ function hideBanner() {
 }
 
 function showBanner() {
-    const banner = document.querySelector('.cookie-banner');
+    const banner = document.querySelector('.cookiee-banner');
     const settingsButton = document.querySelector('.cookie-settings-button');
     
     if (banner) {
