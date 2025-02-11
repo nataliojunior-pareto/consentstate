@@ -5,8 +5,8 @@ import { createBanner, start, defaultConsent, acceptAllConsents, rejectAllConsen
 async function initializeCMP() {
     try {
         await start();
-        await createBanner(url);
-        await autoBlocking();
+        createBanner(url);
+        autoBlocking();
         initializeBannerListeners();
     } catch (error) {
         console.error('Erro ao inicializar CMP:', error);
