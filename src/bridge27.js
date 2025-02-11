@@ -165,10 +165,10 @@ export function createBanner(urlBanner) {
             if (styleElement) {
                 document.head.appendChild(styleElement.cloneNode(true));
             }
-            /*document.body.appendChild(bannerElement);
+            document.body.appendChild(bannerElement);
             document.body.appendChild(manageSection);
             document.body.appendChild(overlay);
-            document.body.appendChild(settingButton);*/
+            document.body.appendChild(settingButton);
         })
         .catch(error => {
             console.error('Erro ao criar banner:', error);
