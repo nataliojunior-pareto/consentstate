@@ -5,7 +5,7 @@ import { createBanner, start, defaultConsent, acceptAllConsents, rejectAllConsen
 function initializeCMP() {
     try {
         start();
-        createBanner(url);
+        await createBanner(url);
         autoBlocking();
         initializeBannerListeners();
     } catch (error) {
@@ -116,4 +116,6 @@ function showBanner() {
     }
 }
 
-initializeCMP();
+window.addEventListener('DOMContentLoaded', () => {
+    initializeCMP();
+});
