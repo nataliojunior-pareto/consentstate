@@ -2,7 +2,7 @@ const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/
 
 import { createBanner, start, defaultConsent, acceptAllConsents, rejectAllConsents, updateManagedConsents, autoBlocking} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge29.js';
 
-function initializeCMP() {
+async function initializeCMP() {
     try {
         start();
         await createBanner(url);
