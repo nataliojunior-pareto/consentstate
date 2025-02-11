@@ -1,4 +1,4 @@
-const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/mellifluous/banner-template24.html';
+const url = 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/mellifluous/banner-template25.html';
 
 import { createBanner, start, defaultConsent, acceptAllConsents, rejectAllConsents, updateManagedConsents, autoBlocking} from 'https://cdn.jsdelivr.net/gh/nataliojunior-pareto/consentstate@main/src/bridge25.js';
 
